@@ -1,21 +1,12 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: Pod
 metadata:
-  name: nodeSelector-demo
+  name: nodeselector
   labels:
     app: nodeselector
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: nodeselector
-  template:
-    metadata:
-      labels:
-        app: nodeselector
-    spec:
-      nodeSelector:
-        topology.kubernetes.io/zone: "us-east-1a"
-      containers:
-      - name: nginx
-        image: nginx:1.24.0
+  nodeSelector:
+    topology.kubernetes.io/zone: "us-east-1a"
+  containers:
+    - name: nginx
+      image: nginx:1.24.0
