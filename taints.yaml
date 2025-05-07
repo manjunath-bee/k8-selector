@@ -1,3 +1,5 @@
+#kubectl taint nodes ip-192-168-31-201.ec2.internal hardware=gpu:NoSchedule
+
 apiVersion: v1
 kind: Pod
 metadata:
