@@ -3,20 +3,18 @@ kind: Pod
 metadata:
   name: pod1
   labels:
-   app-name: test
+   app: test
   namespace: expense
 spec:
   containers:
   - name: nginx
     image: nginx
-       
+
 ---
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pod-2
-  labels:
-   app-name: test
+  name: pod2
   namespace: expense
 spec:
   affinity:
@@ -24,10 +22,11 @@ spec:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
           matchExpressions:
-          - key: app-name
+          - key: app
             operator: In
             values:
             - test
+        topologyKey: topology.kubernetes.io/zone
   containers:
   - name: nginx
     image: nginx
